@@ -1,0 +1,38 @@
+GENERAL:
+- Data stems from renewables.ninja, three files with data have been downloaded for weather, wind, and solar PV.
+- For all files, same location (see below), same time span (2022), and same dataset (NASA's MERRA-2) have been used. 
+- The files were manually combined into a single dataset (removing metadata, renaming electricity columns to pv_power and wind_power).
+- Electricity data for Germany stems from SMARD and was copied into file after adjusting the time-series to UTC and converting the price to CAD/MWh.
+- Demand curve was generated synthetically and is saved separately.
+
+LOCATION:
+- Lat 54.2, Lon 8.9
+- Northern Germany, Schleswig Holstein, close to North Sea.
+- Location was chosen due to high wind resources.
+- Not ideal for solar -> same for most of Germany.
+
+WEATHER:
+- Take all available variables (filter later)
+
+WIND:
+- Selected wind turbine: Siemens SWT 2.3 101.
+- Chosen because: 2MW class has been a popular choice for onshore turbines (a bit outdated).
+- Hubheight is chosen to be 100m (based on similar projects in Ontario).
+- Nameplate capacity is 2.3 MW, hence capacity field is set to 2300 kW.
+- Capacity factor indicated by renewables.ninja is 55.2%.
+
+SOLAR PV:
+- keep default system loss of 0.1 (fraction)
+- capacity of 1 kW
+- no tracking of sun
+- tilt angle: keep default of 35 degrees.
+- azimuth: 180 degrees, hence southwards facing panels
+- Capacity factor indicated by renewables.ninja is 14.1%.
+- Note: 1 MW of PV requires roughly 4500 sqm
+
+HEADERS:
+- see raw-data files for legend on headers and units -> weather data not copied into main file for now.
+
+SIZING:
+- Assume one SWT 2.3, 1MW PV installed -> then avg. combined RE is 1.411 MW
+- Try to match demand to have roughly same average values for RE production and demand -> 1.474 MW if factor of 4_500 is used.

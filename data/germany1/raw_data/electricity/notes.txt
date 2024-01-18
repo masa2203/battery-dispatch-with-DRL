@@ -1,0 +1,11 @@
+- Gro_handelspreise_202201010000_202212312359_Stunde.xlsx is the orignial file downloaded from https://www.smard.de/home
+
+- 2022raw.csv is the original file after removing redundant columns and renaming the remaining columns. One row is manually added from file below (first hour for 2023)
+
+- Gro_handelspreise_202301010000_202301022359_Stunde.xlsx is used to fill in missing our after time conversion to UTC.
+
+Changes done to obtain 2022_electricity_final.csv:
+- Combine date and hour into datetime column
+- Accounting for daylight savings time, convert to UTC
+- Multiply electriciy prices by 1.45 to convert EURO to CAD (corresponds to rough 5-year average)
+- Filter out values that are not from 2022 (UTC), applies only to first row.
